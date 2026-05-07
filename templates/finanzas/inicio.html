@@ -1,0 +1,35 @@
+{% extends 'finanzas/base.html' %}
+
+{% block contenido %}
+<div class="card">
+    <h2>Inicio</h2>
+    <p>Esta página fue creada como proyecto de práctica en Django. La idea es armar una web simple relacionada con educación financiera y servicios de asesoramiento.</p>
+    <p>Desde el menú se pueden cargar artículos, servicios, consultas y también buscar artículos guardados en la base de datos.</p>
+</div>
+
+<div class="card">
+    <h3>Últimos artículos cargados</h3>
+    {% if articulos %}
+        {% for articulo in articulos %}
+            <h4>{{ articulo.titulo }}</h4>
+            <p><strong>Categoría:</strong> {{ articulo.categoria }}</p>
+            <p>{{ articulo.contenido|truncatewords:25 }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Todavía no hay artículos cargados.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>Servicios financieros</h3>
+    {% if servicios %}
+        {% for servicio in servicios %}
+            <h4>{{ servicio.nombre }}</h4>
+            <p><strong>Tipo:</strong> {{ servicio.tipo }}</p>
+            <p>{{ servicio.descripcion|truncatewords:20 }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Todavía no hay servicios cargados.</p>
+    {% endif %}
+</div>
+{% endblock %}
